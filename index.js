@@ -30,12 +30,12 @@ async function run() {
       res.send(services);
     });
     // GET SINGLE SERVICE FROM API
-    app.get("/services/:id", async (req,res)=>{
-        const id = req.params.id;
-        const query = {_id:ObjectId(id)}
-        const service = await servicesCollection.findOne(query);
-        res.json(service);
-    })
+    app.get("/services/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const service = await servicesCollection.findOne(query);
+      res.json(service);
+    });
     // POST API
     app.post("/services", async (req, res) => {
       const service = req.body;
@@ -43,12 +43,12 @@ async function run() {
       res.json(result);
     });
     // DELETE API
-    app.delete("/services/:id", async (req,res)=>{
-        const id = req.params.id;
-        const query = {_id:ObjectId(id)};
-        const result = await servicesCollection.deleteOne(query);
-        res.json(result);
-    })
+    app.delete("/services/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await servicesCollection.deleteOne(query);
+      res.json(result);
+    });
   } finally {
     //   await client.close();
   }
@@ -57,6 +57,10 @@ run().catch(console.dir);
 
 app.get("/", (req, res) => {
   res.send("welcome to genius car!!");
+});
+
+app.get("/hello", (req, res) => {
+  res.send("hello updated here!!");
 });
 
 app.listen(port, () => {
